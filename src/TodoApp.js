@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container,Text, View} from 'native-base';
+import { View} from 'native-base';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
@@ -15,10 +15,10 @@ export default class TodoApp extends React.Component {
    render(){
        return (
         <Provider store={store}>
-            <Container>
-            <TodoForm />
-            <TodoList />
-        </Container>
+            <View>
+                <TodoForm />
+                <TodoList />
+            </View>
         </Provider>
        );
    } 

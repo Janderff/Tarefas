@@ -1,21 +1,32 @@
 import React from "react";
-import { Container, Text } from "native-base";
-import { StyleSheet } from "react-native";
+import { View} from "native-base";
+
 
 import { connect } from 'react-redux';
 
-const TodoList= ({ todos }) => (
-    <Container>
-        {todos.map(todo => <Text key={todo.id}>{todo.text}</Text>)}
-    </Container>
-)
+import TodoListItem from './TodoListItem';
+import { toggleTodo } from "../actions";
 
-const styles = StyleSheet.create({
 
-})
+const TodoList =( { todos, dispatchToggleTodo }) => (
+    <View>
+        {todos.map(
+            todo => (
+            <TodoListItem 
+                key={todo.id} 
+                todo={todo.text}
+                onPressTodo={() => dispatchToggleTodo(todo.id)} 
+            />
+        ))}   
+    </View>
+);
+
 const mapStateToProps = state => {
     const { todos }= state;
     return { todos};
 }
 
-export default connect(mapStateToProps)(TodoList);
+export default connect(
+    mapStateToProps, 
+    {dispatchToggleTodo: toggleTodo })
+    (TodoList);

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Text } from "native-base";
+import { Button, Text, View } from "native-base";
 import { StyleSheet } from "react-native";
 import { connect } from "react-redux";
 
@@ -20,32 +20,33 @@ class TodoForm extends React.Component {
   }
   onPress() {
     this.props.dispatchAddTodo(this.state.text);
+    this.setState({text: ''});
   }
   render() {
     const { text } = this.state;
     return (
-      <Container style={styles.formContainer}>
-        <Container style={styles.inputContanier}>
+      <View style={styles.formContainer}>
+        <View style={styles.inputContanier}>
           <Inputs onChangeText={text => this.onChangeText(text)} 
           value={text} />
-        </Container>
-        <Container style={styles.button}>
-          <Button  dark onPress={() => this.onPress()}>
+        </View>
+        <View style={styles.button}>
+          <Button bordered dark onPress={() => this.onPress()}>
             <Text>ADD</Text>
           </Button>
-        </Container>
-      </Container>
+        </View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   formContainer: {
-    paddingEnd: 15,
-    flexDirection: "row"
+    paddingEnd: 5,
+    flexDirection: "row",
   },
   inputContanier: {
-    flex: 4
+    flex: 4,
   },
   button: {
     flex: 1,
